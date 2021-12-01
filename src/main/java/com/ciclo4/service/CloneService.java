@@ -48,7 +48,7 @@ public class CloneService {
         if (clone.getId()!= null) {
             Optional<Clone> cloneExist = cloneRepository.getClone(clone.getId());
             
-            if (cloneExist.isEmpty()) {
+            if (cloneExist.isPresent()) {
                 
                 if (clone.getBrand()!= null) {
                     cloneExist.get().setBrand(clone.getBrand());   

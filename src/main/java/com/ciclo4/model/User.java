@@ -23,8 +23,6 @@ public class User{
     private Integer id;
     private String identification;
     private String name;
-    private Date birthDay;
-    private String monthBirthDay;
     private String address;
     private String cellPhone;
     private String email;
