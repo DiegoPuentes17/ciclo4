@@ -2,10 +2,10 @@ package com.ciclo4.repository;
 
 import com.ciclo4.model.User;
 import java.util.Optional;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 //interface metodos CRUD de la Clase USER
-public interface UserCrudRepository  extends CrudRepository<User, Integer>{
+public interface UserCrudRepository  extends MongoRepository<User, Integer>{
     
     /**
      *

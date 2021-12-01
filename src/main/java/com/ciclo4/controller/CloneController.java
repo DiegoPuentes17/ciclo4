@@ -1,8 +1,7 @@
-
 package com.ciclo4.controller;
 
-import com.ciclo4.model.User;
-import com.ciclo4.service.UserService;
+import com.ciclo4.model.Clone;
+import com.ciclo4.service.CloneService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,52 +18,37 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/clone")
 @CrossOrigin(origins = "*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class UserController {
+public class CloneController {
     
     @Autowired
-    private UserService userService;
+    private CloneService cloneService;
     
-    //GET ALL USER
+    //GET ALL CLONE
     @GetMapping("/all")
-    public List<User> getUser(){
-        return  userService.getAllUser();
+    public List<Clone> getClone(){
+      return cloneService.getAllClone();
     }
     
-    //GET EMAIL
-    @GetMapping("/emailexist/{email}")
-    public boolean getUserEmail(@PathVariable("email") String email){
-        return userService.getUserEmail(email);
-    }
-    //GET EMAIL AND PASSWORD
-    @GetMapping("/{email}/{password}")
-    public User getUserAccount(@PathVariable("email") String email, @PathVariable("password") String password){
-        return userService.getEmailAndPass(email, password);
-    }
-    
-    //POST USER
+    //POST CLONE
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public User saveUser(@RequestBody User user){
-        return userService.saveUser(user);
+    public Clone SaveClone(@RequestBody Clone clone){
+        return cloneService.saveClone(clone);
     }
     
-    /**
-     *
-     * @param user
-     * @return
-     */
+    //POST CLONE
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public User Update(@RequestBody User user){
-        return userService.UpdateUser(user);
+    public Clone updateClone(@RequestBody Clone clone){
+        return cloneService.updateClone(clone);
     }
-    
     
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") Integer id){
-        userService.deleteUser(id);
+    public void deleteClone(@PathVariable("id") Integer id){
+        cloneService.deleteClone(id);
     }
+
 }

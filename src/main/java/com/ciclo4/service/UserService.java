@@ -42,7 +42,7 @@ public class UserService {
             return userCheck.get();
         }else{
             
-            return new User(null, email, password, "NO DEFINIDO" );
+            return new User();
         }
   
         
@@ -50,7 +50,7 @@ public class UserService {
     
     //guardar usuario
     public User saveUser(User user){
-        if( user.getName() == null || user.getEmail() == null || user.getPassword() == null){
+        if( user.getName() == null || user.getEmail() == null || user.getPassword() == null || user.getIdentification() == null || user.getType() == null){
             return user;
         }else{
             Optional<User> userCheck = userRepository.getUsers(user.getEmail(), user.getPassword());
@@ -74,5 +74,62 @@ public class UserService {
                 return user;
             }
         }
+    }
+    //Actualizar usuario
+    public User UpdateUser(User user){
+        if(user.getId()!=null){
+            Optional<User> userExist = userRepository.getUser(user.getId());
+
+            if (userExist.isPresent()) {
+                if (user.getIdentification()!= null) {
+                    userExist.get().setIdentification(user.getIdentification());   
+                }
+                if (user.getName()!= null) {
+                    userExist.get().setName(user.getName());   
+                }
+                if (user.getBirthDay()!= null) {
+                    userExist.get().setBirthDay(user.getBirthDay());   
+                }
+                if (user.getMonthBirthDay()!= null) {
+                    userExist.get().setMonthBirthDay(user.getMonthBirthDay());   
+                }
+                if (user.getAddress()!= null) {
+                    userExist.get().setAddress(user.getAddress());   
+                }
+                if (user.getCellPhone()!= null) {
+                    userExist.get().setCellPhone(user.getCellPhone());  
+                }
+                if (user.getEmail()!= null) {
+                    userExist.get().setEmail(user.getEmail());   
+                }
+                if (user.getPassword()!= null) {
+                    userExist.get().setPassword(user.getPassword());   
+                }
+                if (user.getZone()!= null) {
+                    userExist.get().setZone(user.getZone());   
+                }
+                if (user.getType()!= null) {
+                    userExist.get().setType(user.getType());   
+                }
+                return userRepository.saveUser(userExist.get());
+            }else{
+                
+                return user;
+            }
+        }else{
+            return user;
+        }
+    }
+
+    //Eliminar usuario
+    public Integer deleteUser(Integer id){
+       Optional<User> user = userRepository.getUser(id);
+       
+       if(user.isPresent()){
+           userRepository.deleteUser(id);
+           return null;
+       }else{
+           return id;
+       }
     }
 }  

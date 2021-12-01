@@ -1,16 +1,12 @@
 
 package com.ciclo4.model;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import java.util.Date;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 //Creacion de Getters and Setters
 //Creacion de contructores
@@ -18,20 +14,22 @@ import lombok.Data;
 @NoArgsConstructor
 @AllArgsConstructor
 
-//Creacion tabla USER
-@Entity
-@Table(name = "user")
-public class User implements Serializable{
+//Creacion de la collection USER
+@Document(collection = "usuarios")
+public class User{
     
     //Atributos tabla USER
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "user_email", nullable = false, length = 50, unique = true)
-    private String email;
-    @Column(name = "user_password", nullable = false, length = 50)
-    private String password;
-    @Column(name = "user_name", nullable = false, length = 80)
+    private String identification;
     private String name;
+    private Date birthDay;
+    private String monthBirthDay;
+    private String address;
+    private String cellPhone;
+    private String email;
+    private String password;
+    private String zone;
+    private String type;
 
 }
