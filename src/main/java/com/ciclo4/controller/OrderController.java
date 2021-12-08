@@ -1,8 +1,7 @@
-
 package com.ciclo4.controller;
 
-import com.ciclo4.model.User;
-import com.ciclo4.service.UserService;
+import com.ciclo4.model.Order;
+import com.ciclo4.service.OrderService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,57 +18,53 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/order")
 @CrossOrigin(origins = "*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class UserController {
-    
+public class OrderController {
+   
     @Autowired
-    private UserService userService;
+    private OrderService orderService;
     
-    //GET ALL USER
+    //GET ALL order
     @GetMapping("/all")
-    public List<User> getUser(){
-        return  userService.getAllUser();
+    public List<Order> getOrder(){
+        return  orderService.getAllOrder();
     }
     
-    //GET EMAIL
-    @GetMapping("/emailexist/{email}")
-    public boolean getUserEmail(@PathVariable("email") String email){
-        return userService.getUserEmail(email);
-    }
-    //GET EMAIL AND PASSWORD
-    @GetMapping("/{email}/{password}")
-    public User getUserAccount(@PathVariable("email") String email, @PathVariable("password") String password){
-        return userService.getEmailAndPass(email, password);
-    }
     
-    //POST USER
+    //POST Order
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public User saveUser(@RequestBody User user){
-        return userService.saveUser(user);
+    public Order saveUser(@RequestBody Order order){
+        return orderService.saveOrder(order);
     }
     
     /**
      *
-     * @param user
+     * @param order
      * @return
      */
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public User Update(@RequestBody User user){
-        return userService.UpdateUser(user);
+    public Order Update(@RequestBody Order Order){
+        return orderService.UpdateOrder(Order);
     }
     
     
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Integer id){
-        userService.deleteUser(id);
+        orderService.deleteOrder(id);
     }
     
     @GetMapping("/{id}")
-    public User getUser(@PathVariable("id") Integer id){
-        return userService.getUser(id);
+    public Order getOrder(@PathVariable("id") Integer id){
+        return orderService.getOrder(id);
+    }
+    
+    @GetMapping("/zona/{zone}")
+    public List<Order> getZone(@PathVariable("zone") String zone){
+        return orderService.getZone(zone);
     }
 }
+

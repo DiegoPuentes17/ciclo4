@@ -18,6 +18,10 @@ public class UserService {
         return userRepository.getAllUser();
     }
     
+    public User getUser(Integer id){
+        return userRepository.getUser(id).orElse(new User());
+    }
+    
     //usuario = email
     public boolean getUserEmail(String email){
         /*
@@ -86,6 +90,12 @@ public class UserService {
                 }
                 if (user.getName()!= null) {
                     userExist.get().setName(user.getName());   
+                }
+                if (user.getBirthtDay()!= null) {
+                    userExist.get().setBirthtDay(user.getBirthtDay());
+                }
+                if (user.getMonthBirthtDay()!= null) {
+                    userExist.get().setMonthBirthtDay(user.getMonthBirthtDay());   
                 }
                 if (user.getAddress()!= null) {
                     userExist.get().setAddress(user.getAddress());   
