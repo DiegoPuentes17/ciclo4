@@ -104,4 +104,18 @@ public class OrderService {
         return orderRepository.getAllZone(zone);
     }
     
+    public List<Order> getSalesManId(Integer id){
+        
+        return orderRepository.getSalesManId(id);
+    }
+    
+            
+    public List<Order> getSalesManStatus(Integer id, String status){
+        
+        return orderRepository.getSalesManStatus(id, status);
+    }
+    
+    public List<Order> getRegisterDayAndSalesMan(String registerDay, Integer salesManId){
+        return orderRepository.getRegisterDayAndSalesMan(registerDay, salesManId);
+    }
 }
