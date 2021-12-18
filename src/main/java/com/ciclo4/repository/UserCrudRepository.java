@@ -1,6 +1,7 @@
 package com.ciclo4.repository;
 
 import com.ciclo4.model.User;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -28,4 +29,6 @@ public interface UserCrudRepository  extends MongoRepository<User, Integer>{
      * @return
      */
     public Optional<User> findByEmailAndPassword(String email, String password);
+    
+    public List<User> findByMonthBirthtDay(String month);
 }

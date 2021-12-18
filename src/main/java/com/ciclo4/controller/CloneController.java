@@ -50,5 +50,17 @@ public class CloneController {
     public void deleteClone(@PathVariable("id") Integer id){
         cloneService.deleteClone(id);
     }
+    
+    //GET ALL CLONEPRICE
+    @GetMapping("/price/{price}")
+    public List<Clone> getClonePrice(@PathVariable("price") double price){
+      return cloneService.getClonePrice(price);
+    }
+    
+    //GET ALL CLONEDESCRIPTION
+    @GetMapping("/description/{description}")
+    public List<Clone> getCloneDescription(@PathVariable("description") String description){
+      return cloneService.getContainsCloneDescription(description);
+    }
 
 }

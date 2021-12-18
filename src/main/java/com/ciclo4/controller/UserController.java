@@ -72,4 +72,10 @@ public class UserController {
     public User getUser(@PathVariable("id") Integer id){
         return userService.getUser(id);
     }
+    
+    //GET EMAIL
+    @GetMapping("/birthday/{month}")
+    public List<User> getMonthBirthDay(@PathVariable("month") String month){
+        return userService.getMonthBirthtDay(month);
+    }
 }

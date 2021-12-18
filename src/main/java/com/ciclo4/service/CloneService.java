@@ -98,4 +98,12 @@ public class CloneService {
            return id;
        }
     }
+    
+    public List<Clone> getClonePrice(double price){
+        return cloneRepository.getClonePrice(price);
+    }
+    
+    public List<Clone> getContainsCloneDescription(String description){
+        return cloneRepository.getContainsCloneDescription(description);
+    }
 }
